@@ -1,296 +1,172 @@
-# 🏥 Emergency Hospital Patient Management System
-### *A Practical Full-Stack & CLI Healthcare Architecture Grounded in Core Data Structures & Algorithms*
+<div align="center">
 
-[![Python](https://img.shields.io/badge/Python-3.11%20%7C%203.12%20%7C%203.14-blue.svg?logo=python&logoColor=white)](https://www.python.org/)
-[![Flask](https://img.shields.io/badge/Framework-Flask%203.1-black.svg?logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
-[![Tests](https://img.shields.io/badge/Tests-25%20Passing%20(100%25)-brightgreen.svg?logo=pytest&logoColor=white)](https://docs.pytest.org/)
-[![WSGI](https://img.shields.io/badge/Production%20WSGI-Waitress-orange.svg)](https://docs.pylonsproject.org/projects/waitress/)
-[![DSA](https://img.shields.io/badge/Algorithms-Binary%20Heap%20%7C%20MergeSort%20%7C%20BinarySearch-purple.svg)]()
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+<!-- Animated Banner -->
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0d1117,50:1a1a2e,100:16213e&height=200&section=header&text=BSOUOP%20Sidoine&fontSize=50&fontColor=00d4ff&animation=fadeIn&fontAlignY=35&desc=Mechatronics%20%26%20AI%20Engineer%20%7C%20Building%20Intelligent%20Systems&descAlignY=60&descSize=18&descColor=a0a0b0" width="100%"/>
 
----
+<!-- Typing Animation -->
+<a href="https://git.io/typing-svg">
+  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=22&duration=3000&pause=1000&color=00D4FF&center=true&vCenter=true&multiline=false&repeat=true&width=600&height=50&lines=🤖+Mechatronics+%26+AI+Engineer;🧠+Intelligent+Systems+Specialist;🌐+Full-Stack+%26+AI+Web+Developer;🚀+Building+the+Future+from+Cameroon" alt="Typing SVG" />
+</a>
 
-## 🌟 Executive Overview
+<br/>
 
-The **Emergency Hospital Patient Management System** is an engineering project designed to bridge the gap between **theoretical Computer Science (Data Structures & Algorithms)** and **real-world backend systems architecture**.
+<!-- Profile Views & Followers Badges -->
+<img src="https://komarev.com/ghpvc/?username=Sidoine20&label=PROFILE+VIEWS&color=00d4ff&style=for-the-badge" alt="Profile views"/>
+&nbsp;
+<img src="https://img.shields.io/github/followers/Sidoine20?label=FOLLOWERS&style=for-the-badge&color=00d4ff&labelColor=0d1117" alt="GitHub Followers"/>
 
-Rather than relying on high-level Python standard abstractions (`collections.deque`, `heapq`, `list.sort`), every critical operational pipeline is **engineered from first principles**:
-- **Triage Acuity Sorting:** Custom Complete Binary Max-Heap with arrival tie-breaking.
-- **Fair Walk-In Admissions:** Custom dual-pointer FIFO Linked Queue.
-- **Clinical Undo & Rollbacks:** Custom single-pointer LIFO Linked Stack.
-- **Urgent Zero-Shift Admissions:** Custom Singly Linked List with head pointer rewiring.
-- **Instant Patient Lookups:** Logarithmic $\mathcal{O}(\log_2 n)$ Binary Search with statistical comparison tracking.
-- **Stable Clinical Reports:** Guaranteed $\Theta(n \log_2 n)$ Merge Sort and in-place Quick Sort.
-
-The system is deployed as a **unified multi-device web platform** (accessible via desktop, phone, or tablet over LAN) as well as an **interactive terminal command hub**.
+</div>
 
 ---
 
-## 🏛️ Architectural Mapping: Features vs. Custom DSA
+## ⚡ About Me
 
-```
-+---------------------------------------------------------------------------------------------------------------+
-|                                      FLASK WEB DASHBOARD & REST API                                           |
-|                            (http://localhost:5000/ • /api/stats • /api/patients)                              |
-+---------------------------------------------------------------------------------------------------------------+
-                                                       |
-                                                       v
-+---------------------------------------------------------------------------------------------------------------+
-|                                          HOSPITAL SERVICE LAYER                                               |
-|                                     (services/hospital_service.py)                                            |
-+---------------------------------------------------------------------------------------------------------------+
-          |                         |                        |                      |                   |
-          v                         v                        v                      v                   v
-+--------------------+   +--------------------+   +--------------------+   +------------------+   +-------------+
-|    MASTER LIST     |   |  EMERGENCY TRIAGE  |   |     OUTPATIENT     |   |   AUDIT TRAIL    |   | PERSISTENCE |
-|   (Dynamic Array)  |   | (Binary Max-Heap)  |   |    (FIFO Queue)    |   |   (LIFO Stack)   |   |  (SQLite)   |
-|  data_structures/  |   |  data_structures/  |   |  data_structures/  |   | data_structures/ |   |   models/   |
-|  patient_list.py   |   | priority_queue.py  |   |      queue.py      |   |     stack.py     |   | database.py |
-+--------------------+   +--------------------+   +--------------------+   +------------------+   +-------------+
-          |                                                                         |
-          v                                                                         v
-+--------------------------------------------------------------------+    +-------------------+
-|                       ALGORITHMS ENGINE                            |    |   UNDO/ROLLBACK   |
-|   • Binary Search (O(log n))   • Merge Sort (Stable O(n log n))    |    |  O(1) pop & state |
-|   • Quick Sort (O(n log n))    • Bubble & Selection Sort (O(n²))   |    |    restoration    |
-+--------------------------------------------------------------------+    +-------------------+
+```python
+class AIEngineer:
+    def __init__(self):
+        self.name        = "BSOUOP Ndie Consty Sidoine"
+        self.role        = "Mechatronics Engineer & AI Specialist"
+        self.location    = "📍 Cameroon 🇨🇲"
+        self.education   = "Intelligent Systems Engineering"
+        self.languages   = ["Python", "C++", "JavaScript/TypeScript", "Java", "HTML/CSS", "SQL"]
+        self.focus       = ["Robotics", "AI/ML", "Computer Vision", "IoT", "Autonomous Systems", "NLP"]
+        self.stack       = ["React", "Node.js", "Docker", "Kubernetes", "TensorFlow", "OpenCV"]
+        self.status      = "🎓 Student | 🔍 Open to Internships & Collaboration"
+        self.fun_fact    = "Smart, Funny, and building the future 🚀"
+
+    def say_hi(self):
+        print("Thanks for visiting! Let's build something amazing together.")
+
+me = AIEngineer()
+me.say_hi()
 ```
 
 ---
 
-## 📐 Formal Asymptotic & Mathematical Analysis
+## 🔭 What I'm Working On
 
-| Component | Mathematical Model / Recurrence | Best Case | Average Case | Worst Case | Space Complexity | Real-World Hospital Mapping |
-| :--- | :--- | :---: | :---: | :---: | :---: | :--- |
-| **Dynamic Array** | $\text{Addr}(i) = \text{Base} + i \cdot \text{Size}$ | $\Theta(1)$ | $\Theta(1)$ | $\Theta(1)$ | $\Theta(n)$ | Master Registry Random Access Lookup |
-| **Singly Linked List** | $\text{Node} = (\text{data}, \text{next})$ | $\Theta(1)$ | $\mathcal{O}(n)$ | $\mathcal{O}(n)$ | $\Theta(n)$ | Zero-Shift Urgent Patient Prepending |
-| **FIFO Queue** | Dual-pointer chain ($\text{front}, \text{rear}$) | $\Theta(1)$ | $\Theta(1)$ | $\Theta(1)$ | $\Theta(n)$ | Outpatient Arrival Order Triage Line |
-| **LIFO Stack** | Single-pointer chain ($\text{top}$) | $\Theta(1)$ | $\Theta(1)$ | $\Theta(1)$ | $\Theta(n)$ | Clinical Snapshot Undo & Audit Trail |
-| **Binary Max-Heap** | Height $h = \lfloor \log_2 n \rfloor$ | $\Theta(1)$ (peek) | $\Theta(\log_2 n)$ | $\mathcal{O}(\log_2 n)$ | $\Theta(1)$ aux | Emergency Acuity Priority Dispatch |
-| **Binary Search** | $T(n) = T(\lfloor n/2 \rfloor) + \Theta(1)$ | $\Omega(1)$ | $\Theta(\log_2 n)$ | $\mathcal{O}(\log_2 n)$ | $\Theta(1)$ | $10,000\text{ records} \rightarrow \mathbf{\le 14\text{ comparisons}}$ |
-| **Merge Sort** | $T(n) = 2T(n/2) + \Theta(n)$ | $\Omega(n \log_2 n)$ | $\Theta(n \log_2 n)$ | $\mathcal{O}(n \log_2 n)$ | $\Theta(n)$ | Stable Clinical Reporting |
-| **Quick Sort** | $T(n) = 2T(n/2) + \Theta(n)$ | $\Omega(n \log_2 n)$ | $\Theta(n \log_2 n)$ | $\mathcal{O}(n^2)$ | $\mathcal{O}(\log_2 n)$ stack | High-Throughput In-Place Sorting |
-| **Bubble Sort** | $\sum_{i=1}^{n-1} (n - i) = \frac{n^2 - n}{2}$ | $\Omega(n)$ (flag) | $\Theta(n^2)$ | $\mathcal{O}(n^2)$ | $\Theta(1)$ | Algorithmic Baseline Benchmark |
-| **Selection Sort** | $\sum_{i=1}^{n-1} (n - i) = \frac{n^2 - n}{2}$ | $\Omega(n^2)$ | $\Theta(n^2)$ | $\mathcal{O}(n^2)$ | $\Theta(1)$ | Minimum Data Movement ($\le n-1$ swaps) |
+- 🤖 **Intelligent Systems** — Robotics, control systems and autonomous agents
+- 🧠 **AI & Machine Learning** — Building smart models with Python & TensorFlow
+- 👁️ **Computer Vision** — Image processing, object detection with OpenCV
+- 🌐 **AI-Powered Web Apps** — Full-stack apps with React, Node.js and AI integration
+- 📡 **IoT Solutions** — Embedded systems and connected devices (C/C++)
 
 ---
 
-## ⚡ Empirical Benchmarking Results
+## 🛠️ Tech Stack & Tools
 
-Our built-in benchmarking engine measures exact comparison counts and wall-clock execution timings:
+<div align="center">
 
-### **Search Benchmark ($N = 10,000$ Patients)**
-```text
-Target Patient ID: 10,000 (Worst-Case Search at End of Dataset)
------------------------------------------------------------------
-Linear Search (Unsorted) :  10,000 comparisons | Time: 0.3092 ms | Complexity: O(n)
-Binary Search (Ordered)  :      14 comparisons | Time: 0.0112 ms | Complexity: O(log2 n)
------------------------------------------------------------------
-Speedup Factor           :  714x fewer operations!
-```
+### 💻 Languages
+![Python](https://img.shields.io/badge/Python-0d1117?style=for-the-badge&logo=python&logoColor=00d4ff)
+![C++](https://img.shields.io/badge/C++-0d1117?style=for-the-badge&logo=cplusplus&logoColor=00d4ff)
+![JavaScript](https://img.shields.io/badge/JavaScript-0d1117?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
+![TypeScript](https://img.shields.io/badge/TypeScript-0d1117?style=for-the-badge&logo=typescript&logoColor=3178C6)
+![Java](https://img.shields.io/badge/Java-0d1117?style=for-the-badge&logo=openjdk&logoColor=ED8B00)
+![HTML5](https://img.shields.io/badge/HTML5-0d1117?style=for-the-badge&logo=html5&logoColor=E34F26)
+![CSS3](https://img.shields.io/badge/CSS3-0d1117?style=for-the-badge&logo=css3&logoColor=1572B6)
+![SQL](https://img.shields.io/badge/SQL-0d1117?style=for-the-badge&logo=postgresql&logoColor=336791)
 
-### **Sorting Benchmark (Runtime in Milliseconds)**
-```text
-Dataset Size (N)   | Bubble Sort  | Selection Sort | Merge Sort (Stable) | Quick Sort (In-Place)
--------------------------------------------------------------------------------------------------
-N = 500            |     7.52 ms  |       4.45 ms  |            0.69 ms  |              0.39 ms
-N = 1,000          |    32.24 ms  |      17.43 ms  |            2.15 ms  |              0.88 ms
-N = 2,000          |   137.80 ms  |      66.06 ms  |            3.01 ms  |              2.06 ms
-```
+### 🤖 AI / ML / Robotics
+![TensorFlow](https://img.shields.io/badge/TensorFlow-0d1117?style=for-the-badge&logo=tensorflow&logoColor=FF6F00)
+![PyTorch](https://img.shields.io/badge/PyTorch-0d1117?style=for-the-badge&logo=pytorch&logoColor=EE4C2C)
+![OpenCV](https://img.shields.io/badge/OpenCV-0d1117?style=for-the-badge&logo=opencv&logoColor=5C3EE8)
+![scikit--learn](https://img.shields.io/badge/Scikit--Learn-0d1117?style=for-the-badge&logo=scikitlearn&logoColor=F7931E)
+![NumPy](https://img.shields.io/badge/NumPy-0d1117?style=for-the-badge&logo=numpy&logoColor=013243)
+![Pandas](https://img.shields.io/badge/Pandas-0d1117?style=for-the-badge&logo=pandas&logoColor=150458)
 
-> **Key Insight:** As $N$ doubles from $1,000 \rightarrow 2,000$, $\mathcal{O}(n^2)$ algorithms scale quadratically ($4.3\times$ increase), whereas Merge Sort and Quick Sort scale quasi-linearly ($\approx 1.4\times$ increase).
+### 🌐 Web & Backend
+![React](https://img.shields.io/badge/React-0d1117?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Node.js](https://img.shields.io/badge/Node.js-0d1117?style=for-the-badge&logo=nodedotjs&logoColor=339933)
+![Vue.js](https://img.shields.io/badge/Vue.js-0d1117?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D)
 
----
+### ⚙️ DevOps & Tools
+![Docker](https://img.shields.io/badge/Docker-0d1117?style=for-the-badge&logo=docker&logoColor=2496ED)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-0d1117?style=for-the-badge&logo=kubernetes&logoColor=326CE5)
+![Git](https://img.shields.io/badge/Git-0d1117?style=for-the-badge&logo=git&logoColor=F05032)
+![GitHub](https://img.shields.io/badge/GitHub-0d1117?style=for-the-badge&logo=github&logoColor=ffffff)
+![Linux](https://img.shields.io/badge/Linux-0d1117?style=for-the-badge&logo=linux&logoColor=FCC624)
+![VS Code](https://img.shields.io/badge/VS_Code-0d1117?style=for-the-badge&logo=visualstudiocode&logoColor=007ACC)
 
-## 📂 Project Directory Structure
-
-```
-EmergencyHospitalSystem/
-├── app.py                      # Unified Deployment Hub (CLI & Multi-Device WSGI Server)
-├── wsgi.py                     # Production WSGI entrypoint for Cloud
-├── start.bat                   # Windows One-Click Double-Click Launcher
-├── Dockerfile                  # Containerized deployment manifest
-├── Procfile                    # Render / Railway / Heroku deployment manifest
-├── requirements.txt            # Python dependencies (Flask, Waitress, Pytest)
-├── hospital.db                 # SQLite backing database
-│
-├── models/
-│   ├── patient.py              # Patient entity model
-│   └── database.py             # SQLite persistence & data structure hydration
-│
-├── data_structures/
-│   ├── linked_list.py          # Singly Linked List (Node, LinkedList)
-│   ├── patient_list.py         # Dynamic Array patient management
-│   ├── queue.py                # FIFO Linked-Node Queue
-│   ├── stack.py                # LIFO Linked-Node Stack
-│   └── priority_queue.py       # Complete Binary Max-Heap & EmergencyPriorityQueue
-│
-├── algorithms/
-│   ├── binary_search.py        # O(log n) iterative binary search with stats
-│   ├── merge_sort.py           # O(n log n) stable merge sort
-│   ├── quick_sort.py           # O(n log n) in-place Lomuto quick sort
-│   ├── bubble_sort.py          # Adaptive O(n²) comparison sort
-│   ├── selection_sort.py       # O(n²) minimum swap sort
-│   └── benchmark.py            # Automated empirical runtime benchmark
-│
-├── services/
-│   └── hospital_service.py     # Orchestration service bridging DSA with UI & DB
-│
-├── routes/
-│   ├── api_routes.py           # REST API endpoints (/api/*)
-│   └── web_routes.py           # Web Dashboard endpoints (/, /benchmarks, /learn, /tests)
-│
-├── templates/
-│   ├── base.html               # Responsive Bootstrap 5 layout & navigation
-│   ├── index.html              # Interactive Hospital Triage Dashboard
-│   ├── benchmarks.html         # Live Empirical Speed Benchmark UI
-│   ├── learn.html              # Mathematical & Structural Walkthrough
-│   └── tests.html              # Web-based pytest execution console
-│
-├── static/
-│   └── css/style.css           # Custom medical styling
-│
-└── tests/
-    ├── test_linked_list.py     # Linked List unit tests
-    ├── test_queue.py           # FIFO Queue unit tests
-    ├── test_stack.py           # LIFO Stack unit tests
-    ├── test_priority_queue.py  # Binary Max-Heap & tie-break tests
-    ├── test_algorithms.py      # Searching & Sorting algorithmic tests
-    ├── test_service.py         # Hospital service integration tests
-    └── test_routes.py          # Flask Web & REST API tests
-```
+</div>
 
 ---
 
-## 🚀 Quick Start Guide
+## 📊 GitHub Statistics
 
-### 1. Installation & Environment Setup
+<div align="center">
 
-```bash
-# Clone the repository
-git clone https://github.com/your-username/EmergencyHospitalSystem.git
-cd EmergencyHospitalSystem
+<img width="49%" src="https://github-readme-stats.vercel.app/api?username=Sidoine20&show_icons=true&theme=github_dark&hide_border=true&bg_color=0d1117&title_color=00d4ff&icon_color=00d4ff&text_color=a0a0b0&ring_color=00d4ff" alt="GitHub Stats"/>
+<img width="49%" src="https://github-readme-streak-stats.herokuapp.com/?user=Sidoine20&theme=github-dark-blue&hide_border=true&background=0d1117&ring=00d4ff&fire=ff6b6b&currStreakLabel=00d4ff&sideNums=00d4ff" alt="GitHub Streak"/>
 
-# Create and activate virtual environment
-python -m venv .venv
+<br/>
 
-# On Windows:
-.\.venv\Scripts\activate
+<img width="45%" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Sidoine20&layout=compact&theme=github_dark&hide_border=true&bg_color=0d1117&title_color=00d4ff&text_color=a0a0b0&langs_count=8" alt="Top Languages"/>
 
-# On macOS/Linux:
-source .venv/bin/activate
-
-# Install dependencies
-pip install -r requirements.txt
-```
+</div>
 
 ---
 
-### 2. Running via Interactive Terminal Hub
+## 🏆 GitHub Trophies
 
-```bash
-python app.py
-```
-*(On Windows, you can also double-click **`start.bat`**).*
+<div align="center">
 
-Presents an interactive menu:
-```text
-===========================================================================
-EMERGENCY HOSPITAL PATIENT MANAGEMENT SYSTEM (UNIFIED DSA HUB)
-===========================================================================
-  [1] Start Multi-Device Web Server (http://localhost:5000/)
-  [2] Run Terminal DSA Learning Walkthrough
-  [3] Run Algorithmic Speed Benchmarks
-  [4] Run Automated Test Suite (pytest)
-  [5] All-in-One: Run Verification Tests & Launch Server
-  [0] Exit
-===========================================================================
-Enter option [0-5]: 
-```
+<img src="https://github-profile-trophy.vercel.app/?username=Sidoine20&theme=darkhub&no-frame=true&no-bg=true&margin-w=15&column=7" alt="GitHub Trophies"/>
+
+</div>
 
 ---
 
-### 3. Direct CLI Command Flags
+## 🚀 Featured Projects
 
-```bash
-# Start multi-device web server directly
-python app.py --serve
+<div align="center">
 
-# Start server on custom port/host
-python app.py --serve --port 8080 --host 0.0.0.0
+<a href="https://github.com/Sidoine20/EmergencyHospitalSystem">
+  <img width="48%" src="https://github-readme-stats.vercel.app/api/pin/?username=Sidoine20&repo=EmergencyHospitalSystem&theme=github_dark&hide_border=true&bg_color=0d1117&title_color=00d4ff&text_color=a0a0b0&icon_color=00d4ff" alt="EmergencyHospitalSystem"/>
+</a>
 
-# Run terminal DSA walkthrough
-python app.py --cli
+</div>
 
-# Run empirical algorithm benchmarks
-python app.py --benchmark
-
-# Run automated pytest suite
-python app.py --test
-
-# Run tests, benchmarks, walkthrough, and start server
-python app.py --all
-```
+> 💡 *More projects coming soon! Currently working on AI and robotics solutions.*
 
 ---
 
-## 📱 Multi-Device LAN Access (Phones, Tablets, Laptops)
+## 🌍 Let's Connect
 
-When starting the server (`python app.py --serve`), the application binds to `0.0.0.0` and detects your local IPv4 address:
+<div align="center">
 
-```text
-===========================================================================
-EMERGENCY HOSPITAL SYSTEM: MULTI-DEVICE SERVER
-===========================================================================
-  * This Computer (Localhost) : http://127.0.0.1:5000/
-  * Multiple Devices (LAN/WiFi): http://192.168.1.15:5000/
-  * Speed Benchmarking Engine  : http://192.168.1.15:5000/benchmarks
-  * Mathematical Walkthrough   : http://192.168.1.15:5000/learn
-  * Automated Test Suite       : http://192.168.1.15:5000/tests
-===========================================================================
-```
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0d1117?style=for-the-badge&logo=linkedin&logoColor=0A66C2)](https://www.linkedin.com/in/bsouop-ndie-consty-sidoine-159b61386)
+[![Portfolio](https://img.shields.io/badge/Portfolio-0d1117?style=for-the-badge&logo=vercel&logoColor=00d4ff)](https://sidoine20.github.io/)
+[![GitHub](https://img.shields.io/badge/GitHub-0d1117?style=for-the-badge&logo=github&logoColor=ffffff)](https://github.com/Sidoine20)
+[![X](https://img.shields.io/badge/X_(Twitter)-0d1117?style=for-the-badge&logo=x&logoColor=ffffff)](https://x.com/NBsouop81479)
+[![Facebook](https://img.shields.io/badge/Facebook-0d1117?style=for-the-badge&logo=facebook&logoColor=1877F2)](https://www.facebook.com/share/1KZXkRqfuV/)
+[![Instagram](https://img.shields.io/badge/Instagram-0d1117?style=for-the-badge&logo=instagram&logoColor=E4405F)](https://www.instagram.com/sidoineconsty)
+[![Discord](https://img.shields.io/badge/Discord-0d1117?style=for-the-badge&logo=discord&logoColor=5865F2)](https://discord.gg/Am6gm34en)
 
-1. Connect your **phone, tablet, or another laptop** to the **same Wi-Fi network**.
-2. Open your mobile browser and enter: **`http://<YOUR_LAN_IP>:5000/`**.
-3. Enjoy full interactive access on mobile!
+<br/>
+
+📧 **Email:** *[Click to email me](mailto:your.email@example.com)* &nbsp;|&nbsp; 💬 **Open to:** Internships · Collaborations · Open Source
+
+</div>
 
 ---
 
-## 🧪 Testing & Quality Assurance
+## 📈 Contribution Activity
 
-Run the automated test suite covering all 25 unit and integration tests:
+<div align="center">
 
-```bash
-pytest -v
-```
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=Sidoine20&bg_color=0d1117&color=00d4ff&line=00d4ff&point=ffffff&area=true&area_color=00d4ff&hide_border=true" width="100%" alt="Contribution Graph"/>
 
-### **Test Suite Summary:**
-- `tests/test_algorithms.py`: Verified Binary Search bounds, Merge Sort stability, Quick Sort partitioning.
-- `tests/test_linked_list.py`: Verified head prepends, pointer rewiring, linear deletions.
-- `tests/test_priority_queue.py`: Verified Max-Heap invariants and FIFO tie-breaking on identical acuity.
-- `tests/test_queue.py`: Verified FIFO arrival ordering and empty-state resilience.
-- `tests/test_stack.py`: Verified LIFO clinical state undo and rollback workflows.
-- `tests/test_service.py`: Verified cross-module orchestration and statistics.
-- `tests/test_routes.py`: Verified REST API responses and Web view rendering.
+</div>
 
 ---
 
-## 🌐 REST API Reference
+<div align="center">
 
-| Method | Endpoint | Description | Sample Parameters / Body |
-| :--- | :--- | :--- | :--- |
-| `GET` | `/api/stats` | Retrieve real-time hospital KPIs & queue counts | None |
-| `GET` | `/api/patients?sort_by=name` | Retrieve all patients sorted by key | `sort_by` (`id`, `name`, `age`) |
-| `POST` | `/api/patients` | Register new patient into triage | `{"patient_id": 106, "name": "...", "age": 30, "blood_group": "O+", "priority": "High", "department": "Emergency"}` |
-| `GET` | `/api/patients/search?id=102` | Search patient using Binary Search | `id` or `name`, `method=binary` |
-| `POST` | `/api/emergency/treat-next` | Treat highest priority ER patient via Binary Max-Heap | None |
-| `POST` | `/api/outpatient/call-next` | Call next outpatient via FIFO Queue | None |
-| `POST` | `/api/audit/rollback` | Rollback most recent clinical action via LIFO Stack | None |
-| `GET` | `/api/benchmark/run` | Trigger empirical speed benchmark | `size=1000&search_size=10000` |
-| `POST` | `/api/tests/run` | Trigger live pytest execution | None |
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:16213e,50:1a1a2e,100:0d1117&height=100&section=footer" width="100%"/>
 
----
+**"The best way to predict the future is to build it."** 🚀
 
-## 📄 License
+*⭐ Star my repos if you find them interesting! Let's build intelligent systems together.*
 
-This project is open-source and available under the **MIT License**.
+</div>

@@ -26,7 +26,7 @@ Important database note: the app currently uses SQLite. On Render's free web ser
 4. Use these settings:
    - Runtime: `Python`
    - Build Command: `pip install -r requirements.txt`
-   - Start Command: `waitress-serve --host=0.0.0.0 --port=$PORT --threads=8 wsgi:app`
+   - Start Command: `python -m waitress --host=0.0.0.0 --port=$PORT --threads=8 wsgi:app`
    - Python Version: `3.11.9`
 5. Add environment variables:
    - `SECRET_KEY`: a long random value used by Flask sessions and flash messages.
@@ -36,10 +36,10 @@ Important database note: the app currently uses SQLite. On Render's free web ser
 ## Start Command Explained
 
 ```bash
-waitress-serve --host=0.0.0.0 --port=$PORT --threads=8 wsgi:app
+python -m waitress --host=0.0.0.0 --port=$PORT --threads=8 wsgi:app
 ```
 
-- `waitress-serve`: runs the app with a production WSGI server.
+- `python -m waitress`: runs the app with the installed Waitress production WSGI server.
 - `--host=0.0.0.0`: accepts traffic from outside the container.
 - `--port=$PORT`: uses the port assigned by the cloud platform.
 - `--threads=8`: allows multiple requests at once.
@@ -79,7 +79,7 @@ pip install -r requirements.txt
 Run the same style of server used in production:
 
 ```bash
-waitress-serve --host=0.0.0.0 --port=5000 --threads=8 wsgi:app
+python -m waitress --host=0.0.0.0 --port=5000 --threads=8 wsgi:app
 ```
 
 Then open:

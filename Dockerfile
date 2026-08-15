@@ -20,4 +20,4 @@ COPY . .
 EXPOSE 5000
 
 # Start production Waitress server. The shell form lets cloud hosts inject $PORT.
-CMD waitress-serve --host=0.0.0.0 --port=${PORT:-5000} --threads=8 wsgi:app
+CMD python -m waitress --host=0.0.0.0 --port=${PORT:-5000} --threads=8 wsgi:app

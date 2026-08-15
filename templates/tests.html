@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block title %}Automated Test Suite • Emergency Hospital System{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm rounded-3 bg-white">
+            <div class="card-body p-4">
+                <div class="d-flex flex-wrap justify-content-between align-items-center gap-3">
+                    <div>
+                        <h4 class="fw-bold mb-1"><i class="fa-solid fa-vial-circle-check text-success me-2"></i> Automated Test Suite Runner</h4>
+                        <p class="text-muted mb-0">Runs the complete <code>pytest</code> verification suite across all 5 custom data structures, 6 algorithms, services, and routes.</p>
+                    </div>
+                    <button id="runTestsBtn" class="btn btn-success btn-sm px-3 fw-bold shadow-sm" onclick="executeTestSuite()">
+                        <i class="fa-solid fa-flask-vial me-1"></i> Run pytest Suite Live
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Test Output Section -->
+<div class="row">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm rounded-3">
+            <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center py-3">
+                <span class="fw-bold"><i class="fa-solid fa-terminal text-info me-2"></i> Live Pytest Console Output</span>
+                <span id="testStatusBadge" class="badge bg-secondary">Ready to run</span>
+            </div>
+            <div class="card-body bg-dark p-3">
+                <pre id="testOutputArea" class="text-light mb-0 p-3 rounded" style="font-family: Consolas, Monaco, monospace; font-size: 0.85rem; max-height: 450px; overflow-y: auto; background-color: #1a1a1a;">
+Click "Run pytest Suite Live" above to execute all 25 unit and integration tests.
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+async function executeTestSuite() {
+    const btn = document.getElementById('runTestsBtn');
+    const outputArea = document.getElementById('testOutputArea');
+    const badge = document.getElementById('testStatusBadge');
+
+    btn.disabled = true;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin me-1"></i> Running tests...';
+    badge.className = 'badge bg-warning text-dark';
+    badge.innerText = 'Executing tests...';
+    outputArea.innerText = 'Running: python -m pytest -v ...\nPlease wait...';
+
+    try {
+        const response = await fetch('/api/tests/run', { method: 'POST' });
+        const data = await response.json();
+
+        if (data.success) {
+            badge.className = 'badge bg-success';
+            badge.innerText = '25 / 25 Tests PASSED (100%)';
+            outputArea.innerText = data.output || 'All tests passed successfully!';
+        } else {
+            badge.className = 'badge bg-danger';
+            badge.innerText = 'Test Failures Encountered';
+            outputArea.innerText = (data.output || '') + '\n' + (data.errors || data.error || '');
+        }
+    } catch (err) {
+        badge.className = 'badge bg-danger';
+        badge.innerText = 'Execution Error';
+        outputArea.innerText = 'Failed to communicate with test runner: ' + err;
+    } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fa-solid fa-flask-vial me-1"></i> Run pytest Suite Live';
+    }
+}
+</script>
+{% endblock %}

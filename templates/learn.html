@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+
+{% block title %}DSA Mathematical Walkthrough & Foundations • Emergency Hospital System{% endblock %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-12">
+        <div class="card border-0 shadow-sm rounded-3 bg-white">
+            <div class="card-body p-4">
+                <h4 class="fw-bold mb-1"><i class="fa-solid fa-graduation-cap text-primary me-2"></i> Data Structures & Algorithms Mathematical Foundations</h4>
+                <p class="text-muted mb-0">Formal asymptotic analysis ($\mathcal{O}, \Omega, \Theta$), recurrence relations, and invariant proofs mapped directly to clinical hospital operations.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 6 DSA Foundations Cards Grid -->
+<div class="row g-4">
+    <!-- 1. Dynamic Array -->
+    <div class="col-md-6 col-xl-4">
+        <div class="card border-0 shadow-sm rounded-3 h-100">
+            <div class="card-header bg-primary text-white py-3">
+                <h5 class="mb-0 fw-bold"><i class="fa-solid fa-database me-2"></i> 1. Dynamic Array (PatientList)</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text text-muted small">Contiguous memory allocation with arithmetic address computation: $\text{Address}(A[i]) = \text{Base} + i \times \text{Size}$.</p>
+                <div class="p-2 bg-light rounded border mb-3 small">
+                    <code>PatientList (Dynamic Python List wrapper)</code>
+                </div>
+                <ul class="list-unstyled small mb-0">
+                    <li><i class="fa-solid fa-check text-success me-2"></i><strong>Random Access:</strong> $\Theta(1)$ constant time</li>
+                    <li><i class="fa-solid fa-check text-success me-2"></i><strong>Amortized Append:</strong> $\mathcal{O}(1)$ (occasional geometric resize)</li>
+                    <li><i class="fa-solid fa-xmark text-danger me-2"></i><strong>Prepend / Delete Head:</strong> $\Theta(n)$ due to physical element shifting</li>
+                    <li><i class="fa-solid fa-hospital text-primary me-2"></i><strong>Hospital Role:</strong> Master Patient Database Lookup</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Singly Linked List -->
+    <div class="col-md-6 col-xl-4">
+        <div class="card border-0 shadow-sm rounded-3 h-100">
+            <div class="card-header bg-info text-white py-3">
+                <h5 class="mb-0 fw-bold"><i class="fa-solid fa-link me-2"></i> 2. Singly Linked List</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text text-muted small">Dispersed heap memory nodes linked via explicit pointers: $\text{Node} = (\text{data}, \text{next})$.</p>
+                <div class="p-2 bg-light rounded border mb-3 small">
+                    <code>Head &rarr; Node(104) &rarr; Node(101) &rarr; None</code>
+                </div>
+                <ul class="list-unstyled small mb-0">
+                    <li><i class="fa-solid fa-check text-success me-2"></i><strong>Prepend (Head Insert):</strong> Strictly $\Theta(1)$ pointer update</li>
+                    <li><i class="fa-solid fa-check text-success me-2"></i><strong>Delete Head:</strong> $\Theta(1)$ (<code>head = head.next</code>)</li>
+                    <li><i class="fa-solid fa-xmark text-danger me-2"></i><strong>k-th Element Access:</strong> $\Theta(k) \le \mathcal{O}(n)$ sequential hops</li>
+                    <li><i class="fa-solid fa-hospital text-primary me-2"></i><strong>Hospital Role:</strong> Urgent zero-shift triage prepending</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. FIFO Queue -->
+    <div class="col-md-6 col-xl-4">
+        <div class="card border-0 shadow-sm rounded-3 h-100">
+            <div class="card-header bg-success text-white py-3">
+                <h5 class="mb-0 fw-bold"><i class="fa-solid fa-arrow-right-arrow-left me-2"></i> 3. FIFO Queue</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text text-muted small">Dual-pointer singly linked chain maintaining <code>front</code> and <code>rear</code> references.</p>
+                <div class="p-2 bg-light rounded border mb-3 small">
+                    <code>Dequeue(Front) &larr; [101] &larr; [102] &larr; [103] &larr; Enqueue(Rear)</code>
+                </div>
+                <ul class="list-unstyled small mb-0">
+                    <li><i class="fa-solid fa-check text-success me-2"></i><strong>Enqueue at Rear:</strong> $\Theta(1)$ pointer assignment</li>
+                    <li><i class="fa-solid fa-check text-success me-2"></i><strong>Dequeue at Front:</strong> $\Theta(1)$ pointer advance</li>
+                    <li><i class="fa-solid fa-check text-success me-2"></i><strong>Peek Front:</strong> $\Theta(1)$ constant time</li>
+                    <li><i class="fa-solid fa-hospital text-primary me-2"></i><strong>Hospital Role:</strong> Outpatient routine consultation line</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. LIFO Stack -->
+    <div class="col-md-6 col-xl-4">
+        <div class="card border-0 shadow-sm rounded-3 h-100">
+            <div class="card-header bg-warning text-dark py-3">
+                <h5 class="mb-0 fw-bold"><i class="fa-solid fa-layer-group me-2"></i> 4. LIFO Stack</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text text-muted small">Single pointer singly linked chain maintaining a <code>top</code> reference for state history.</p>
+                <div class="p-2 bg-light rounded border mb-3 small">
+                    <code>TOP &rarr; Snapshot(t=2) &rarr; Snapshot(t=1) &rarr; None</code>
+                </div>
+                <ul class="list-unstyled small mb-0">
+                    <li><i class="fa-solid fa-check text-success me-2"></i><strong>Push State Snapshot:</strong> $\Theta(1)$</li>
+                    <li><i class="fa-solid fa-check text-success me-2"></i><strong>Pop (Rollback Action):</strong> $\Theta(1)$</li>
+                    <li><i class="fa-solid fa-check text-success me-2"></i><strong>Auxiliary Memory:</strong> $\Theta(n)$ for $n$ historical steps</li>
+                    <li><i class="fa-solid fa-hospital text-primary me-2"></i><strong>Hospital Role:</strong> Clinical audit trail & prescription undo</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Complete Binary Max-Heap -->
+    <div class="col-md-6 col-xl-4">
+        <div class="card border-0 shadow-sm rounded-3 h-100">
+            <div class="card-header bg-danger text-white py-3">
+                <h5 class="mb-0 fw-bold"><i class="fa-solid fa-sitemap me-2"></i> 5. Complete Binary Max-Heap</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text text-muted small">Complete binary tree of height $h = \lfloor \log_2 n \rfloor$ stored in 1D array.</p>
+                <div class="p-2 bg-light rounded border mb-3 small">
+                    <code>Parent: &lfloor;(i-1)/2&rfloor; | Left: 2i+1 | Right: 2i+2</code>
+                </div>
+                <ul class="list-unstyled small mb-0">
+                    <li><i class="fa-solid fa-check text-success me-2"></i><strong>Insert / Sift-Up:</strong> $\mathcal{O}(h) = \mathcal{O}(\log_2 n)$</li>
+                    <li><i class="fa-solid fa-check text-success me-2"></i><strong>Extract-Max / Sift-Down:</strong> $\mathcal{O}(h) = \mathcal{O}(\log_2 n)$</li>
+                    <li><i class="fa-solid fa-check text-success me-2"></i><strong>Peek Max:</strong> $\Theta(1)$ index 0 read</li>
+                    <li><i class="fa-solid fa-hospital text-primary me-2"></i><strong>Hospital Role:</strong> Emergency trauma prioritization</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. Search & Sorting Engine -->
+    <div class="col-md-6 col-xl-4">
+        <div class="card border-0 shadow-sm rounded-3 h-100">
+            <div class="card-header bg-dark text-white py-3">
+                <h5 class="mb-0 fw-bold"><i class="fa-solid fa-bolt me-2"></i> 6. Asymptotic Search & Sort</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text text-muted small">Divide-and-conquer recurrences with tight asymptotic bounds.</p>
+                <div class="p-2 bg-light rounded border mb-3 small">
+                    <code>Binary Search: &Omicron;(log n) | MergeSort: &Theta;(n log n)</code>
+                </div>
+                <ul class="list-unstyled small mb-0">
+                    <li><i class="fa-solid fa-check text-success me-2"></i><strong>Binary Search:</strong> $C_{\max}(n) = \lfloor \log_2 n \rfloor + 1$</li>
+                    <li><i class="fa-solid fa-check text-success me-2"></i><strong>Merge Sort:</strong> $T(n) = 2T(n/2) + \Theta(n) \implies \Theta(n \log_2 n)$</li>
+                    <li><i class="fa-solid fa-check text-success me-2"></i><strong>Quick Sort:</strong> In-place average $\Theta(n \log_2 n)$</li>
+                    <li><i class="fa-solid fa-hospital text-primary me-2"></i><strong>Hospital Role:</strong> Multi-tier clinical analytics & reporting</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

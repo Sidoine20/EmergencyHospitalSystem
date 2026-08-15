@@ -1,0 +1,311 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Top Statistics Row -->
+<div class="row g-3 mb-4">
+    <div class="col-xl-3 col-sm-6">
+        <div class="card stat-card border-0 shadow-sm bg-white rounded-3 h-100">
+            <div class="card-body d-flex align-items-center justify-content-between">
+                <div>
+                    <h6 class="text-muted text-uppercase mb-1 small fw-bold">Master Registry</h6>
+                    <h3 class="mb-0 fw-bold text-dark">{{ stats.total_patients }}</h3>
+                    <small class="text-primary"><i class="fa-solid fa-database me-1"></i> Dynamic Array</small>
+                </div>
+                <div class="stat-icon bg-primary-subtle text-primary p-3 rounded-circle">
+                    <i class="fa-solid fa-users fs-3"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6">
+        <div class="card stat-card border-0 shadow-sm bg-white rounded-3 h-100">
+            <div class="card-body d-flex align-items-center justify-content-between">
+                <div>
+                    <h6 class="text-muted text-uppercase mb-1 small fw-bold">Emergency Triage</h6>
+                    <h3 class="mb-0 fw-bold text-danger">{{ stats.emergency_queue_size }}</h3>
+                    <small class="text-danger"><i class="fa-solid fa-sitemap me-1"></i> Binary Max-Heap</small>
+                </div>
+                <div class="stat-icon bg-danger-subtle text-danger p-3 rounded-circle">
+                    <i class="fa-solid fa-truck-medical fs-3"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6">
+        <div class="card stat-card border-0 shadow-sm bg-white rounded-3 h-100">
+            <div class="card-body d-flex align-items-center justify-content-between">
+                <div>
+                    <h6 class="text-muted text-uppercase mb-1 small fw-bold">Outpatient Waiting</h6>
+                    <h3 class="mb-0 fw-bold text-success">{{ stats.outpatient_queue_size }}</h3>
+                    <small class="text-success"><i class="fa-solid fa-arrow-right-arrow-left me-1"></i> FIFO Queue</small>
+                </div>
+                <div class="stat-icon bg-success-subtle text-success p-3 rounded-circle">
+                    <i class="fa-solid fa-user-clock fs-3"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 col-sm-6">
+        <div class="card stat-card border-0 shadow-sm bg-white rounded-3 h-100">
+            <div class="card-body d-flex align-items-center justify-content-between">
+                <div>
+                    <h6 class="text-muted text-uppercase mb-1 small fw-bold">Undo Stack Depth</h6>
+                    <h3 class="mb-0 fw-bold text-warning">{{ stats.undo_stack_depth }}</h3>
+                    <small class="text-warning"><i class="fa-solid fa-layer-group me-1"></i> LIFO History Stack</small>
+                </div>
+                <div class="stat-icon bg-warning-subtle text-warning p-3 rounded-circle">
+                    <i class="fa-solid fa-clock-rotate-left fs-3"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Interactive Department Controls Row -->
+<div class="row g-4 mb-4">
+    <!-- Emergency Department Triage -->
+    <div class="col-lg-6">
+        <div class="card border-0 shadow-sm rounded-3 h-100">
+            <div class="card-header bg-danger text-white d-flex justify-content-between align-items-center py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-heart-pulse fs-5"></i>
+                    <h5 class="mb-0 fw-bold">Emergency Triage (Binary Max-Heap)</h5>
+                </div>
+                <form action="{{ url_for('web.treat_emergency') }}" method="POST" class="m-0">
+                    <button type="submit" class="btn btn-light btn-sm fw-bold text-danger shadow-sm" {% if emergency_list|length == 0 %}disabled{% endif %}>
+                        <i class="fa-solid fa-stethoscope me-1"></i> Treat Next Highest Urgency [O(log n)]
+                    </button>
+                </form>
+            </div>
+            <div class="card-body p-0">
+                {% if emergency_list %}
+                    <div class="list-group list-group-flush">
+                        {% for patient in emergency_list %}
+                            <div class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <div>
+                                    <span class="badge {% if patient.priority == 'Critical' %}bg-danger{% elif patient.priority == 'High' %}bg-warning text-dark{% else %}bg-primary{% endif %} me-2">
+                                        {{ patient.priority }}
+                                    </span>
+                                    <strong class="text-dark">{{ patient.name }}</strong>
+                                    <span class="text-muted ms-2 small">ID: #{{ patient.patient_id }} | Age: {{ patient.age }} | Blood: {{ patient.blood_group }}</span>
+                                </div>
+                                <span class="badge bg-light text-secondary border">{{ patient.status }}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="text-center py-4 text-muted">
+                        <i class="fa-solid fa-circle-check fs-2 text-success mb-2"></i>
+                        <p class="mb-0">No emergency patients waiting in the Max-Heap.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Outpatient Clinic Queue -->
+    <div class="col-lg-6">
+        <div class="card border-0 shadow-sm rounded-3 h-100">
+            <div class="card-header bg-success text-white d-flex justify-content-between align-items-center py-3">
+                <div class="d-flex align-items-center gap-2">
+                    <i class="fa-solid fa-clipboard-user fs-5"></i>
+                    <h5 class="mb-0 fw-bold">Outpatient Waiting Line (FIFO Queue)</h5>
+                </div>
+                <form action="{{ url_for('web.call_outpatient') }}" method="POST" class="m-0">
+                    <button type="submit" class="btn btn-light btn-sm fw-bold text-success shadow-sm" {% if outpatient_list|length == 0 %}disabled{% endif %}>
+                        <i class="fa-solid fa-bullhorn me-1"></i> Call Next Outpatient [O(1)]
+                    </button>
+                </form>
+            </div>
+            <div class="card-body p-0">
+                {% if outpatient_list %}
+                    <div class="list-group list-group-flush">
+                        {% for patient in outpatient_list %}
+                            <div class="list-group-item d-flex justify-content-between align-items-center p-3">
+                                <div>
+                                    <span class="badge bg-secondary me-2">Position #{{ loop.index }}</span>
+                                    <strong class="text-dark">{{ patient.name }}</strong>
+                                    <span class="text-muted ms-2 small">ID: #{{ patient.patient_id }} | Priority: {{ patient.priority }}</span>
+                                </div>
+                                <span class="badge bg-light text-secondary border">{{ patient.status }}</span>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    <div class="text-center py-4 text-muted">
+                        <i class="fa-solid fa-check fs-2 text-success mb-2"></i>
+                        <p class="mb-0">No outpatient consultations waiting in the Queue.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Search, Sort & Master Registry Section -->
+<div class="card border-0 shadow-sm rounded-3 mb-4">
+    <div class="card-header bg-white py-3">
+        <div class="row g-3 align-items-center">
+            <div class="col-md-4">
+                <h5 class="mb-0 fw-bold text-dark">
+                    <i class="fa-solid fa-hospital-user text-primary me-2"></i> Master Patient Registry
+                </h5>
+            </div>
+            <!-- Search Form -->
+            <div class="col-md-4">
+                <form action="{{ url_for('web.index') }}" method="GET" class="d-flex gap-2">
+                    <input type="hidden" name="sort_by" value="{{ current_sort }}">
+                    <div class="input-group input-group-sm">
+                        <input type="text" name="search_query" class="form-control" placeholder="Search ID or Name (Binary Search)..." value="{{ search_query }}">
+                        <button class="btn btn-primary" type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </div>
+                    {% if search_query %}
+                        <a href="{{ url_for('web.index', sort_by=current_sort) }}" class="btn btn-outline-secondary btn-sm">Clear</a>
+                    {% endif %}
+                </form>
+            </div>
+            <!-- Sorting Controls & Add Patient Button -->
+            <div class="col-md-4 text-md-end d-flex justify-content-md-end gap-2">
+                <div class="btn-group btn-group-sm">
+                    <a href="{{ url_for('web.index', sort_by='id') }}" class="btn btn-outline-primary {% if current_sort == 'id' %}active{% endif %}">Sort ID</a>
+                    <a href="{{ url_for('web.index', sort_by='name') }}" class="btn btn-outline-primary {% if current_sort == 'name' %}active{% endif %}">Sort Name</a>
+                    <a href="{{ url_for('web.index', sort_by='age') }}" class="btn btn-outline-primary {% if current_sort == 'age' %}active{% endif %}">Sort Age</a>
+                </div>
+                <button class="btn btn-primary btn-sm fw-bold" data-bs-toggle="modal" data-bs-target="#registerModal">
+                    <i class="fa-solid fa-user-plus me-1"></i> Register
+                </button>
+            </div>
+        </div>
+
+        <!-- Search Result Alert -->
+        {% if search_stats %}
+            <div class="alert alert-info mt-3 mb-0 py-2 d-flex justify-content-between align-items-center">
+                <div>
+                    <i class="fa-solid fa-bolt text-warning me-2"></i>
+                    <strong>{{ search_stats.algorithm }} executed:</strong>
+                    {% if search_result %}
+                        Found <strong>{{ search_result.name }}</strong> (ID: #{{ search_result.patient_id }})
+                        {% if search_stats.comparisons %}in <strong>{{ search_stats.comparisons }} comparison(s)</strong>!{% endif %}
+                    {% else %}
+                        No patient matching "<em>{{ search_query }}</em>" found.
+                    {% endif %}
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="card-body p-0 table-responsive">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Patient ID</th>
+                    <th>Full Name</th>
+                    <th>Age</th>
+                    <th>Blood Group</th>
+                    <th>Triage Priority</th>
+                    <th>Status</th>
+                    <th class="text-end">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for patient in patients %}
+                    <tr class="{% if search_result and search_result.patient_id == patient.patient_id %}table-warning fw-bold{% endif %}">
+                        <td><strong>#{{ patient.patient_id }}</strong></td>
+                        <td>{{ patient.name }}</td>
+                        <td>{{ patient.age }} yrs</td>
+                        <td><span class="badge bg-secondary-subtle text-secondary">{{ patient.blood_group }}</span></td>
+                        <td>
+                            <span class="badge {% if patient.priority == 'Critical' %}bg-danger{% elif patient.priority == 'High' %}bg-warning text-dark{% elif patient.priority == 'Medium' %}bg-primary{% else %}bg-secondary{% endif %}">
+                                {{ patient.priority }}
+                            </span>
+                        </td>
+                        <td>
+                            <span class="badge {% if patient.status == 'Discharged' %}bg-secondary{% elif 'In Treatment' in patient.status or 'Consultation' in patient.status %}bg-success{% else %}bg-info text-dark{% endif %}">
+                                {{ patient.status }}
+                            </span>
+                        </td>
+                        <td class="text-end">
+                            {% if patient.status != 'Discharged' %}
+                                <form action="{{ url_for('web.discharge', patient_id=patient.patient_id) }}" method="POST" class="d-inline">
+                                    <button type="submit" class="btn btn-outline-danger btn-sm py-0 px-2" title="Discharge patient">
+                                        Discharge
+                                    </button>
+                                </form>
+                            {% else %}
+                                <span class="text-muted small">Completed</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Register Patient Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="{{ url_for('web.register') }}" method="POST">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="registerModalLabel"><i class="fa-solid fa-user-plus me-2"></i> Register New Patient</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Patient ID</label>
+                        <input type="number" name="patient_id" class="form-control" required placeholder="e.g. 106">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-bold">Full Name</label>
+                        <input type="text" name="name" class="form-control" required placeholder="e.g. Robert Johnson">
+                    </div>
+                    <div class="row g-2 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Age</label>
+                            <input type="number" name="age" class="form-control" required placeholder="e.g. 45">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Blood Group</label>
+                            <select name="blood_group" class="form-select" required>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row g-2 mb-3">
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Clinical Priority</label>
+                            <select name="priority" class="form-select" required>
+                                <option value="Low">Low (Routine)</option>
+                                <option value="Medium">Medium (Urgent)</option>
+                                <option value="High">High (Very Urgent)</option>
+                                <option value="Critical">Critical (Immediate/Resus)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label fw-bold">Department</label>
+                            <select name="department" class="form-select" required>
+                                <option value="Outpatient">Outpatient Clinic (FIFO Queue)</option>
+                                <option value="Emergency">Emergency Room (Max-Heap)</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Register Patient</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

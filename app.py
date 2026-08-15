@@ -13,6 +13,7 @@ import sys
 import socket
 import argparse
 import subprocess
+import os
 from flask import Flask
 from routes.api_routes import api_bp
 from routes.web_routes import web_bp
@@ -36,7 +37,9 @@ def get_local_ip() -> str:
 def create_app() -> Flask:
     """Flask Application Factory."""
     app = Flask(__name__)
-    app.config["SECRET_KEY"] = "emergency-hospital-dsa-secret-key-2026"
+    app.config["SECRET_KEY"] = os.environ.get(
+        "SECRET_KEY", "dev-emergency-hospital-dsa-secret-key"
+    )
 
     # Register Blueprints
     app.register_blueprint(web_bp)
